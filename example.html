@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery Sprite Animate Example</title>
+
+		<style>
+			div {
+				margin: 0;
+				padding: 0;
+			}
+			a {
+				clear: both;
+			}
+			#viewer,
+			#viewer .animate-content div {
+				height: 180px;
+				width: 180px;
+				overflow: hidden;
+			}
+			#viewer .animate-content {
+				width: 1080px;
+			}
+			#viewer .animate-content div {
+				float: left;
+			}
+			.tri {
+				display: block;
+				width: 0px;
+				height: 0px;
+				border-right-style: solid;
+				border-top-style: solid;
+				border-right-color: #000;
+				border-top-color: transparent;
+				border-right-width: 0px;
+				border-top-width: 0px;
+			}
+		</style>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="jquery.sprite-animate.js"></script>
+
+		<script>
+			(function () {
+				// Create some content to animate
+				var content = '';
+
+				for (var i = 0; i < 180; i++) {
+					content += '<div><span class="tri" style="'
+					+ 'border-right-width: ' + i + 'px;'
+					+ 'border-top-width: ' + i + 'px;'
+					+ '"></span></div>';
+				}
+
+				// Remove the last opening row
+				content = content.slice(0, -4);
+
+				$(document).ready(function () {
+					$('#viewer .animate-content').html(content);
+
+					// Initialize the viewer
+					var viewer = $('#viewer').spriteAnimate({
+						columns : 6,
+						frames  : 180,
+						fps     : 60
+					});
+					viewer.play();
+
+					$('#reverse').click(function () {
+						viewer.reverse().rewind().play();
+						return false;
+					});
+				});
+			}());
+		</script>
+	</head>
+	<body>
+		<div id="viewer">
+			<!-- This would normally be a cinemagraphic sprite -->
+			<div class="animate-content"></div>
+		</div>
+		<a href="#" id="reverse">Reverse</a>
+	</body>
+</html>
