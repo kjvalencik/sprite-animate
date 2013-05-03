@@ -16,3 +16,14 @@ Usage
 	});
 
 	controls.play();
+
+Notes
+-----
+
+I use this for cinemagraphs with transparent backgrounds. It also works well for
+video thumbnails that animate on hover.
+
+- ffmpeg works great for pulling frames from a video as images
+- ImageMagick is a helpful tool for batch image processing
+- Use imagemagick's montage to put the images back together as a sprite
+- Pngcrush can help reduce the size of large pngs
